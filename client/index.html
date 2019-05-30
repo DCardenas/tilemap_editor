@@ -1,11 +1,11 @@
 <head>
-  <link href='css/style.css' type='text/css' rel='stylesheet'>
+  <link href='/client/css/style.css' type='text/css' rel='stylesheet'>
   <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class='overlay' id='overlay'>
     <div id='overlay-container'>
-      
+
     </div>
   </div>
   <div id='top-bar'>
@@ -66,9 +66,9 @@
             X: <input class='input--dim' value='0' min='0' max='512' type='number' id='tilesheet-marginx'/><br />
             Y: <input class='input--dim' value='0' min='0' max='512' type='number' id='tilesheet-marginy'/>
           </div>
-        </div>        
+        </div>
       </div>
-      
+
       <div id='layer-container'>
         <div id='layers'></div>
       </div>
@@ -76,7 +76,7 @@
         <button class='button--active button--layer' id='new-layer'>+</button>
         <button class='button--active button--layer' id='del-layer'>-</button>
       </div>
-      
+
       <div id='settings'>
         <div class='settings-container' id='tile-settings'>
           <h3>Tile Size</h3>
@@ -85,7 +85,7 @@
             H: <input class='input--dim' value='32' min='8' max='512' type='number' id='tile-height'/>
           </div>
         </div>
-        
+
         <div class='settings-container' id='canvas-settings'>
           <h3>Canvas Size</h3>
           <div class='options'>
@@ -100,5 +100,5 @@
       </div>
     </div>
   </div>
-  <script src='js/app.js' type='module'></script>
+  <script src='/client/js/app.js' type='module'></script>
 </body>

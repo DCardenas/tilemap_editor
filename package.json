@@ -1,14 +1,15 @@
 {
   "name": "tile_editor",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple online tilemap editor.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Daniel Cardenas",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
     "nodemon": "^1.19.1",
     "socket.io": "^2.2.0"
   }
