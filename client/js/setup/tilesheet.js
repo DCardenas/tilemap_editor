@@ -1,4 +1,4 @@
-import {Tilesheet, TilesheetManager} from '../sprites/tilesheet.js';
+import {Tilesheet, TilesheetManager} from '../sprites/Tilesheet.js';
 import {loadImage} from '../loaders/loaders.js';
 import Vector2 from '../math/Vector2.js';
 import createLoadTilesheetOverlay from '../overlays/load-image.js';
@@ -27,7 +27,7 @@ export default function setupTilesheet() {
     this.margin.y.value = margin.y;
   }
 
-  const tilesheetManager = new TilesheetManager();  
+  const tilesheetManager = new TilesheetManager();
   ['tileSize', 'offset', 'margin'].forEach(prop => {
     ['x', 'y'].forEach(axis => {
       tilesheetInfoDisplay[prop][axis].onchange = () => {
@@ -35,12 +35,12 @@ export default function setupTilesheet() {
           return;
         }
         tilesheetManager.activeSheet.redraw = true;
-        
+
         tilesheetManager.activeSheet[prop][axis] = tilesheetInfoDisplay[prop][axis].value;
       }
     });
   });
-  
+
   const load_image_html = createLoadTilesheetOverlay();
   const buttonLoadTileSheet = document.getElementById('button--load-tilesheet');
   buttonLoadTileSheet.onclick = event => {
@@ -93,7 +93,7 @@ export default function setupTilesheet() {
         uploadButton.className = 'button--active';
       }
     });
-    
+
     fileLoadedDiv.innerHTML = 'No file chosen...';
     uploadButton.className = 'button--inactive';
     tilesheetManager.loading = true;
@@ -104,6 +104,6 @@ export default function setupTilesheet() {
   buttonLoadTileSheet.onmouseout = event => {
     buttonLoadTileSheet.innerHTML = '+';
   }
-  
+
   return tilesheetManager;
 }
