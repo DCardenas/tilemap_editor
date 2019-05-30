@@ -296,6 +296,15 @@ button {
   text-align: right;
 }
 
+#input--settings-color {
+  width: 30px;
+  height: 30px;
+}
+
+#input--settings-color:hover {
+  cursor: pointer;
+}
+
 .input--dim {
   margin: 5px;
   height: 30px;

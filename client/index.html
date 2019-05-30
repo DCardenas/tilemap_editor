@@ -1,6 +1,7 @@
 <head>
   <link href='/client/css/style.css' type='text/css' rel='stylesheet'>
   <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+  <script src='./client/js/jscolor.js'></script>
 </head>
 <body>
   <div class='overlay' id='overlay'>
@@ -95,7 +96,10 @@
         </div>
         <br />
         <div class='settings-container' id='settings-grid'>
-          <input type='checkbox' id='input--settings-grid' checked/> Grid
+          Show Grid <input type='checkbox' id='input--settings-grid' checked/>
+        </div>
+        <div class='settings-container' id='settings-color'>
+          BG Color <button class='jscolor {valueElement:null}' id='input--settings-color'></button>
         </div>
       </div>
     </div>

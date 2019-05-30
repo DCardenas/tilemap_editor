@@ -9,6 +9,7 @@ export default class Settings {
     this.showGrid = true;
     this.zoom = 1;
     this.margin = new Vector2();
+    this.bgColor = 'rgb(255, 255, 255)';
     this.redraw = {
       main: true,
       tilesheet: true,

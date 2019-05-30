@@ -14,7 +14,7 @@ function createMainBackgroundLayer(canvas, settings) {
       buffer.width = canvasDims.x * tileDims.x;
       buffer.height = canvasDims.y * tileDims.y;
 
-      bctx.fillStyle = 'white';
+      bctx.fillStyle = settings.bgColor;
       bctx.fillRect(0, 0, buffer.width, buffer.height);
 
       let margin = new Vector2();
@@ -160,6 +160,9 @@ function createLevelLayer(canvas, settings, tsManager, level) {
 
         layer.buffer.width = width;
         layer.buffer.height = height;
+
+        layer.ctx.fillStyle = layer.bgColor;
+        layer.ctx.fillRect(0, 0, layer.buffer.width, layer.buffer.height);
 
         layer.tiles.forEach((tile, col, row) => {
           if (tile === null || tile.pos === null) {

@@ -9,10 +9,18 @@ export default class FileIO {
     this.loadOverlay = createLoadJSONOverlay();
 
     this.import.onclick = event => {
+      if (this.import.className === 'button--inactive') {
+        return;
+      }
+
       this.showOverlay(this.loadOverlay);
     }
 
     this.export.onclick = event => {
+      if (this.export.className === 'button--inactive') {
+        return;
+      }
+
       this.saveJSON(tsManager, level, settings);
     }
   }

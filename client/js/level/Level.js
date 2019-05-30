@@ -8,6 +8,7 @@ class Layer {
     this.name = name;
     this.tiles = new Matrix();
     this.visible = true;
+    this.bgColor = 'white';
   }
 
   empty() {
@@ -57,6 +58,8 @@ export default class Level {
 
     this.addLayerButton = document.getElementById('new-layer');
     this.removeLayerButton = document.getElementById('del-layer');
+
+    this.colorButton = document.getElementById('input--settings-color');
 
     this.setupButtons();
     this.addLayer(new Layer('background'));
@@ -131,6 +134,13 @@ export default class Level {
         overlayDiv.style.visibility = 'hidden';
       }
     }
+
+    this.colorButton.onclick = event => {
+      this.colorButton.jscolor.onFineChange = event => {
+        this.activeLayer.bgColor = this.colorButton.jscolor.toRGBString();
+        this.redraw = true;
+      }
+    }
   }
 
   addLayer(layer) {
@@ -176,6 +186,7 @@ export default class Level {
     div.appendChild(options);
     options.appendChild(visible);
     document.getElementById('layers').appendChild(div);
+    this.setLayer(layer.name);
   }
 
   removeCurrentLayer() {
