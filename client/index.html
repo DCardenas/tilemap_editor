@@ -13,7 +13,7 @@
       File
       <div class='sub-menu'>
         <ul class='links'>
-          <li id='import'>Import...</li>
+          <li class='button--inactive' id='import'>Import...</li>
           <li id='export'>Export...</li>
         </ul>
       </div>
@@ -74,7 +74,7 @@
       </div>
       <div id='layer-toolbar'>
         <button class='button--active button--layer' id='new-layer'>+</button>
-        <button class='button--active button--layer' id='del-layer'>-</button>
+        <button class='button--inactive button--layer' id='del-layer'>-</button>
       </div>
 
       <div id='settings'>
@@ -94,8 +94,8 @@
           </div>
         </div>
         <br />
-        <div class='settings-container' id='grid-settings'>
-          <input type='checkbox'/> Grid
+        <div class='settings-container' id='settings-grid'>
+          <input type='checkbox' id='input--settings-grid' checked/> Grid
         </div>
       </div>
     </div>

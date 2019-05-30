@@ -2,25 +2,25 @@ import createLoadJSONOverlay from '../overlays/load-JSON.js';
 import {loadJSON} from '../loaders/loaders.js';
 
 export default class FileIO {
-  constructor() {
+  constructor(tsManager, level, settings) {
     this.import = document.getElementById('import');
     this.export = document.getElementById('export');
-    
+
     this.loadOverlay = createLoadJSONOverlay();
-    
+
     this.import.onclick = event => {
       this.showOverlay(this.loadOverlay);
     }
-    
+
     this.export.onclick = event => {
-      this.saveJSON();
+      this.saveJSON(tsManager, level, settings);
     }
   }
-  
+
   showOverlay(html) {
     document.getElementById('overlay').style.visibility = 'visible';
     document.getElementById('overlay-container').innerHTML = html;
-    
+
     const uploadButton = document.getElementById('button--upload-JSON');
     const fileLoadedDiv = document.getElementById('file-loaded');
     document.getElementById('button--cancel').onclick = event => {
@@ -46,12 +46,12 @@ export default class FileIO {
       }
     });
   }
-  
+
   loadJSON(json) {
     console.log(json);
   }
-  
-  saveJSON() {
+
+  saveJSON(tilesheetManager, level, settings) {
     const exportObj = {
       tilesheets: tilesheetManager.toJSON(),
       level: level.toJSON(),

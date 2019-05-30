@@ -10,7 +10,7 @@ body {
 }
 
 button {
-  border: none;   
+  border: none;
   padding: 12px;
   font-size: 16px;
   border-radius: 5px;
@@ -78,8 +78,15 @@ button {
   width: 420px;
   background-color: #33383c;
   padding: 20px;
-  transform: translate(-50%, 0%);  
+  transform: translate(-50%, 0%);
   box-shadow: 0 19px 38px rgba(0,0,0,0.20), 0 15px 12px rgba(0,0,0,0.23);
+}
+
+#overlay-title {
+  text-align: center;
+  padding-bottom: 12px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 #overlay-options {
@@ -140,7 +147,7 @@ button {
 
 .label--file-loader:hover {
   cursor: pointer;
-  filter: brightness(50%); 
+  filter: brightness(50%);
 }
 
 .label--file-loader [type=file] {

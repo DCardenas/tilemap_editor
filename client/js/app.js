@@ -25,7 +25,7 @@ const camera = {
   tilesheet: new Camera()
 }
 
-const fileIO = new FileIO();
+
 const level = new Level();
 document.getElementById('button--clear').onclick = event => {
   level.clearLayer();
@@ -33,7 +33,7 @@ document.getElementById('button--clear').onclick = event => {
 settings.addCanvasSizeCallback(size => {
   level.cols = size.x;
   level.rows = size.y;
-  
+
   level.redraw = true;
 });
 settings.addTileSizeCallback(size => {
@@ -76,10 +76,11 @@ layers.forEach((layerArray, name) => {
   });
 });
 
+const fileIO = new FileIO(tilesheetManager, level, settings);
 let last = performance.now();
 function loop() {
   const now = performance.now();
-  
+
   if (!mouse.isIdle && document.getElementById('overlay').style.visibility === 'hidden') {
     if (mouse.idle < mouse.idleCD) {
       mouse.idle += now - last;
@@ -87,9 +88,9 @@ function loop() {
       mouse.isIdle = true;
     }
   }
-  
+
   comp.draw(ctx, camera, settings);
-  
+
   last = now;
   window.requestAnimationFrame(loop);
 }
