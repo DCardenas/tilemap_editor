@@ -167,8 +167,9 @@ export default class Level {
 
     const image = new Image();
     image.src = '../client/images/eye-open.png';
-    image.width =  30;
-    image.height = 30;
+    image.width =  20;
+    image.height = 20;
+    image.style.padding = '0px';
     const visible = document.createElement('button');
     visible.onclick = event => {
       layer.toggleVisible();

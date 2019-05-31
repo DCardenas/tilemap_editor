@@ -74,7 +74,7 @@ function createMainGridLayer(canvas, settings) {
       buffer.width = canvasDims.x * tileDims.x;
       buffer.height = canvasDims.y * tileDims.y;
 
-      bctx.strokeStyle = '#8b8b8b';
+      bctx.strokeStyle = '#b1b1b1';
       bctx.lineWidth = '1';
 
       bctx.beginPath();
@@ -127,10 +127,12 @@ function createMainGridLayer(canvas, settings) {
     }
 
     if (settings.showGrid) {
+      ctx.globalAlpha = 0.5;
       ctx.drawImage(
         buffer, bufferPos.x, bufferPos.y, width, height,
         pos.x, pos.y, width, height
       );
+      ctx.globalAlpha = 1;
     }
   }
 }
@@ -212,7 +214,7 @@ function createSelectionLayer(canvas, settings, paintbrush) {
     }
 
     if (redraw) {
-      bctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
+      bctx.fillStyle = '#d2d2d2';
       bctx.strokeStyle = '#151515';
       bctx.lineWidth = lineWidth;
       bctx.beginPath();
@@ -234,7 +236,9 @@ function createSelectionLayer(canvas, settings, paintbrush) {
       y = paintbrush.currentSelection.endRow * tileSize.y + settings.margin.y - camera.pos.y - lineWidth / 2;
     }
 
+    ctx.globalAlpha = 0.5;
     ctx.drawImage(buffer, x, y);
+    ctx.globalAlpha = 1;
   }
 }
 
