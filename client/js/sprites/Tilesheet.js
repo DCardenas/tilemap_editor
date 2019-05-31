@@ -203,7 +203,7 @@ export class Tilesheet {
 
   changeZoom(dz) {
     this.zoom += dz;
-    this.zoom = Math.min(Math.max(this.zoom, 0.2), 3);
+    this.zoom = Math.min(Math.max(this.zoom, 0.2), 5);
     this.redraw = true;
   }
 

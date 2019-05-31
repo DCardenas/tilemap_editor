@@ -16,7 +16,7 @@ function resize() {
   canvas.main.height = centerDiv.height;
 
   canvas.tilesheet.width = rightDiv.width * 0.9;
-  canvas.tilesheet.height = rightDiv.width * 1.4;
+  canvas.tilesheet.height = rightDiv.width * 1.2;
 }
 
 resize();

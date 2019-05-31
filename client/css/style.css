@@ -294,7 +294,7 @@ button {
   top: 30px;
   width: 300px;
   text-align: center;
-  transition: 0.5s all ease;
+  transition: 0.75s all ease;
 }
 
 #canvas-settings-menu:hover {
@@ -360,13 +360,12 @@ button {
   float: left;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  border: 2px solid black;
-  border-bottom: none;
   margin-left: -5px;
 }
 
 #tilesheet-selection-container div:not(:first-child) {
   margin-left: -10px;
+  overflow-y: hidden;
 }
 
 .tilesheet-selection:hover {
