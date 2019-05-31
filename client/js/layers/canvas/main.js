@@ -170,7 +170,7 @@ function createLevelLayer(canvas, settings, tsManager, level) {
           }
 
           layer.ctx.drawImage(
-            tsManager.activeSheet.image,
+            tile.spritesheet,
             tile.pos.x, tile.pos.y, tile.dims.x, tile.dims.y,
             col * tileSize.x, row * tileSize.y, tileSize.x, tileSize.y
           );

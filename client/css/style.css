@@ -258,6 +258,45 @@ button {
   margin-top: 0px;
 }
 
+#tilesheet-selection-container {
+  width: 90%;
+  text-align: left;
+  margin: 0px auto;
+}
+
+.tilesheet-selection {
+  position: relative;
+  background-color: #aca8a8;
+  width: 40px;
+  padding: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  float: left;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border: 2px solid black;
+  border-bottom: none;
+  margin-left: -5px;
+}
+
+#tilesheet-selection-container div:not(:first-child) {
+  margin-left: -10px;
+}
+
+.tilesheet-selection:hover {
+  cursor: pointer;
+}
+
+.tilesheet-active {
+  background-color: #4435b9;
+  width: auto;
+  z-index: 3;
+}
+
+.tilesheet-inactive {
+  z-index: 2;
+}
+
 #tilesheet-canvas-container {
   position: relative;
   margin: 5px;

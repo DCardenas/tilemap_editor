@@ -13,10 +13,16 @@ export class TilesheetManager {
     this.onTileSheetChange = [];
     this.display = null;
     this.zoom = 1;
+    this.sheets = 0;
   }
 
   get hasTile() {
     return !this.activeTiles.isEmpty;
+  }
+
+  clearSelection() {
+    this.activeTiles.empty();
+    this.tileSelection = null;
   }
 
   setRatios(canvas, event) {
@@ -37,16 +43,26 @@ export class TilesheetManager {
 
   handleChange() {
     if (!this.activeSheet) {
-      return
+      return;
     }
   }
 
   addTilesheet(tilesheet) {
     this.tilesheets.set(tilesheet.name, tilesheet);
+    this.setActiveSheet(tilesheet.name);
+    this.sheets += 1;
+  }
 
-    if (!this.activeSheet) {
-      this.activeSheet = tilesheet;
+  setActiveSheet(name) {
+    const tilesheet = this.tilesheets.get(name);
+    if (this.activeSheet) {
+      this.activeSheet.div.className = 'tilesheet-selection tilesheet-inactive';
     }
+
+    this.activeSheet = tilesheet;
+    this.activeSheet.div.className = 'tilesheet-selection tilesheet-active';
+
+    this.activeSheet.redraw = true;
   }
 
   startSelection(mouse, canvas, camera) {
@@ -104,7 +120,8 @@ export class TilesheetManager {
             (col + offsetCol) * this.activeSheet.tileSize.x,
             (row + offsetRow) * this.activeSheet.tileSize.y
           ),
-          new Vector2(this.activeSheet.tileSize.x, this.activeSheet.tileSize.y)
+          new Vector2(this.activeSheet.tileSize.x, this.activeSheet.tileSize.y),
+          this.activeSheet.image
         ), offsetCol, offsetRow);
       }
     }

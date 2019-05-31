@@ -59,8 +59,7 @@ keys.listenTo(window, 'keydown');
 keys.listenTo(window, 'keyup');
 keys.addCallback('keyup', event => {
   if (event.key === 'Escape') {
-    tilesheetManager.activeTiles.empty();
-    tilesheetManager.tileSelection = null;
+    tilesheetManager.clearSelection();
     paintbrush.currentSelection = null;
   }
 });

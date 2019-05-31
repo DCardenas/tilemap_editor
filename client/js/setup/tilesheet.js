@@ -70,12 +70,25 @@ export default function setupTilesheet() {
 
           const tilesheet = new Tilesheet(image, name, tileSize, offset, margin);
           tilesheet.setRatio(document.getElementById('canvas--tilesheet'));
-          tilesheetManager.addTilesheet(tilesheet);
+
+          const div = document.createElement('div');
+          div.id = tilesheet.name;
+          div.innerHTML = tilesheet.name;
+          div.onclick = event => {
+            tilesheetManager.setActiveSheet(div.id);
+            tilesheetInfoDisplay.update(tilesheet.tileSize, tilesheet.offset, tilesheet.margin);
+            tilesheetManager.clearSelection();
+          }
+
+          document.getElementById('tilesheet-selection-container').appendChild(div);
+
+          tilesheet.div = div;
 
           tilesheetInfoDisplay.update(tileSize, offset, margin);
 
           document.getElementById('overlay').style.visibility = 'hidden';
           tilesheetManager.loading = false;
+          tilesheetManager.addTilesheet(tilesheet);
         });
       }
     }

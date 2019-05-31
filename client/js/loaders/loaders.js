@@ -1,6 +1,6 @@
 const reader = new FileReader();
 
-export function loadImage(){
+export function loadImage(tsManager){
   return new Promise(resolve => {
     const file = document.querySelector('input[type=file]').files[0];
     let image = new Image();
@@ -15,7 +15,7 @@ export function loadImage(){
       reader.readAsDataURL(file);
     } else {
       image.src = "";
-    }    
+    }
   });
 }
 
