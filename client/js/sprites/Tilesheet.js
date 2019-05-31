@@ -171,7 +171,7 @@ export class Tilesheet {
     this.image = image;
     this.name = name;
     this.tileSize = tileSize;
-    this.offest = offset;
+    this.offset = offset;
     this.margin = margin;
     this.ratio = 1;
     this.zoom = 1;
