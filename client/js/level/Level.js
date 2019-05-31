@@ -165,20 +165,26 @@ export default class Level {
     const options = document.createElement('div');
     options.className = 'layer-options';
 
+    const image = new Image();
+    image.src = '../client/images/eye-open.png';
+    image.width =  30;
+    image.height = 30;
     const visible = document.createElement('button');
     visible.onclick = event => {
       layer.toggleVisible();
 
       visible.className = 'button--layer-block button--layer-block-active';
+      image.src = '../client/images/eye-open.png';
 
       if (!layer.visible) {
         visible.className = 'button--layer-block button--layer-block-inactive';
+        image.src = '../client/images/eye-closed.png';
       }
 
       this.redraw = true;
     }
-    visible.innerHTML = 'v';
     visible.className = 'button--layer-block button--layer-block-active';
+    visible.appendChild(image);
 
     layer.div = div;
 
