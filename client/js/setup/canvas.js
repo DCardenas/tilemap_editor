@@ -14,9 +14,9 @@ function resize() {
   const rightDiv = document.getElementById('right-content').getBoundingClientRect();
   canvas.main.width = centerDiv.width;
   canvas.main.height = centerDiv.height;
-  
+
   canvas.tilesheet.width = rightDiv.width * 0.9;
-  canvas.tilesheet.height = rightDiv.width;
+  canvas.tilesheet.height = rightDiv.width * 1.4;
 }
 
 resize();

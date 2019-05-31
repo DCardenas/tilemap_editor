@@ -288,11 +288,12 @@ function createMainMouseLayer(canvas, settings, mouse, tsManager, paintbrush) {
     bctx.stroke();
     bctx.closePath();
 
+    const mousePos = mouse.getMainCanvasPos(canvas, settings, camera);
     const col = Math.floor(
-      (mouse.pos.x - canvas.offsetLeft + camera.pos.x - settings.margin.x) / tileSize.x
+      mousePos.x / tileSize.x
     );
     const row = Math.floor(
-      (mouse.pos.y - canvas.offsetTop + camera.pos.y - settings.margin.y) / tileSize.y
+      mousePos.y / tileSize.y
     );
     const x = col * tileSize.x + settings.margin.x - camera.pos.x - lineWidth / 2;
     const y = row * tileSize.y + settings.margin.y - camera.pos.y - lineWidth / 2;

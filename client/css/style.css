@@ -63,8 +63,8 @@ button {
 .tooltip {
   position: absolute;
   visibility: hidden;
-  top: 65%;
-  left: 90%;
+  top: 50%;
+  left: 50%;
   min-width: 240px;
   text-align: left;
   background: grey;
@@ -75,12 +75,24 @@ button {
   transition: 0.5s all ease;
   opacity: 0;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  transform: translate(0%, -50%);
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  border-width: 6px;
+  border-style: solid;
+  top: 50%;
+  right: 100%;
+  border-color: transparent grey transparent transparent;
+  transform: translate(0%, -50%);
 }
 
 .button--toolbar-container:hover .tooltip {
   visibility: visible;
   opacity: 1;
-  left: 75%;
+  left: 90%;
 }
 
 .overlay {
@@ -210,6 +222,7 @@ button {
   position: relative;
   width: 67px;
   padding: 15px 14px;
+  z-index: 100;
 }
 
 .menu:hover {
@@ -262,6 +275,55 @@ button {
 
 #center-content {
   width: 75%;
+  position: relative;
+  overflow: hidden;
+}
+
+#canvas-menus-container {
+  height: 30px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-align: left;
+}
+
+#canvas-settings-menu {
+  position: absolute;
+  left: -280px;
+  top: 30px;
+  width: 300px;
+  text-align: center;
+  transition: 0.5s all ease;
+}
+
+#canvas-settings-menu:hover {
+  left: 0px;
+}
+
+#canvas-settings-options {
+  width: 90%;
+  background-color: black;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 20px;
+}
+
+#canvas-settings-toggle {
+  position: absolute;
+  width: 20px;
+  padding: 30px 10px 30px 0px;
+  vertical-align: middle;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: black;
+  top: 50%;
+  left: 100%;
+  transform: translate(0%, -50%);
+}
+
+#canvas-settings-toggle:hover {
+  cursor: pointer;
 }
 
 #right-content {
