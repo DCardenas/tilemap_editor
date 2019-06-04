@@ -234,6 +234,10 @@ export default class Level {
   }
 
   setTile(sprite, col, row) {
+    if (!this.hasCol(col) || !this.hasRow(row)) {
+      return;
+    }
+
     this.activeLayer.setTile(sprite, col, row);
   }
 
