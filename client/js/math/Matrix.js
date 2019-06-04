@@ -20,10 +20,6 @@ export default class Matrix {
   }
 
   set(obj, col, row) {
-    if (col < 0 || row < 0) {
-      debugger
-    }
-
     if (!this.grid.has(col)) {
       this.grid.set(col, new Map());
     }
