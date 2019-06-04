@@ -28,9 +28,7 @@ export default class Settings {
     document.getElementById('canvas-grid').onchange => {
       this.toggleGrid();
     }
-  }
-    
-  
+  }  
   
   addTileSizeCallback(callback) {
     this.onTileSizeChange.push(callback);
