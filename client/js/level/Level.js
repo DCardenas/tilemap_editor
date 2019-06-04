@@ -254,10 +254,10 @@ export default class Level {
 
     result.cols = this.cols;
     result.rows = this.rows;
-    result.layers = {};
+    result.layers = [];
 
     this.layers.forEach(layer => {
-      result.layers[layer.name] = layer.toJSON();
+      result.layers.push(layer.toJSON());
     });
 
     return result;

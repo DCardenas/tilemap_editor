@@ -1,0 +1,104 @@
+<head>
+  <link href='css/style.css' type='text/css' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class='overlay' id='overlay'>
+    <div id='overlay-container'>
+      
+    </div>
+  </div>
+  <div id='top-bar'>
+    <div class='menu'>
+      File
+      <div class='sub-menu'>
+        <ul class='links'>
+          <li id='import'>Import...</li>
+          <li id='export'>Export...</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content'>
+    <div id='left-content'>
+      <div class='button--toolbar-container'>
+        <button class='button--toolbar button--selected' id='button--paint'>Paint</button>
+      </div>
+      <div class='button--toolbar-container'>
+        <button class='button--toolbar button--active' id='button--erase'>Erase</button>
+      </div>
+      <div class='button--toolbar-container'>
+        <button class='button--toolbar button--active' id='button--fill'>Fill</button>
+      </div>
+      <div class='button--toolbar-container'>
+        <button class='button--toolbar button--active' id='button--select'>Select</button>
+      </div>
+      <div class='button--toolbar-container'>
+        <button class='button--toolbar button--active' id='button--clear'>Clear</button>
+      </div>
+    </div>
+    <div id='center-content'>
+      <canvas id='canvas--main'></canvas>
+    </div>
+    <div id='right-content'>
+      <div id='tilesheet-container'>
+        <div id='tilesheet-canvas-container'>
+          <canvas id='canvas--tilesheet'></canvas>
+          <button class='button--active' id='button--load-tilesheet'>+</button>
+        </div>
+        <div class='settings-container' id='tile-settings'>
+          <h3>Size</h3>
+          <div class='options'>
+            W: <input class='input--dim' value='32' min='2' max='512' type='number' id='tilesheet-width'/><br />
+            H: <input class='input--dim' value='32' min='2' max='512' type='number' id='tilesheet-height'/>
+          </div>
+        </div>
+        <div class='settings-container' id='tile-settings'>
+          <h3>Offset</h3>
+          <div class='options'>
+            X: <input class='input--dim' value='0' min='0' max='512' type='number' id='tilesheet-offsetx'/><br />
+            Y: <input class='input--dim' value='0' min='0' max='512' type='number' id='tilesheet-offsety'/>
+          </div>
+        </div>
+        <div class='settings-container' id='tile-settings'>
+          <h3>Margin</h3>
+          <div class='options'>
+            X: <input class='input--dim' value='0' min='0' max='512' type='number' id='tilesheet-marginx'/><br />
+            Y: <input class='input--dim' value='0' min='0' max='512' type='number' id='tilesheet-marginy'/>
+          </div>
+        </div>        
+      </div>
+      
+      <div id='layer-container'>
+        <div id='layers'></div>
+      </div>
+      <div id='layer-toolbar'>
+        <button class='button--active button--layer' id='new-layer'>+</button>
+        <button class='button--active button--layer' id='del-layer'>-</button>
+      </div>
+      
+      <div id='settings'>
+        <div class='settings-container' id='tile-settings'>
+          <h3>Tile Size</h3>
+          <div class='options'>
+            W: <input class='input--dim' value='32' min='8' max='512' type='number' id='tile-width'/><br />
+            H: <input class='input--dim' value='32' min='8' max='512' type='number' id='tile-height'/>
+          </div>
+        </div>
+        
+        <div class='settings-container' id='canvas-settings'>
+          <h3>Canvas Size</h3>
+          <div class='options'>
+            Cols: <input class='input--dim' id='canvas-cols' value='40' min='1' max='100' type='number'/><br />
+            Rows: <input class='input--dim' id='canvas-rows' value='30' min='1' max='100' type='number'/>
+          </div>
+        </div>
+        <br />
+        <div class='settings-container' id='grid-settings'>
+          <input type='checkbox' id='canvas-grid'/> Grid
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src='js/app.js' type='module'></script>
+</body>
