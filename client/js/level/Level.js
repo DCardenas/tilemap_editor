@@ -31,6 +31,7 @@ class Layer {
     const result = {};
     result.name = this.name;
     result.tiles = [];
+    
     this.tiles.forEach((sprite, col, row) => {
       if (!sprite) {
         return;
@@ -45,6 +46,7 @@ class Layer {
         result.tiles.push(spriteResult);
       }
     });
+    
     return result;
   }
 }

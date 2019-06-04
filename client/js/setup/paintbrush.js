@@ -128,7 +128,7 @@ export default function setupPaintbrush(mouse, level, canvas, settings, camera, 
     let clickedInSelection = false;
     
     if (paintbrush.currentSelection && 
-        paintbrush.currentSelection.contains(startCol, startRow)) {
+        paintbrush.currentSelection.contains(col, row)) {
       clickedInSelection = true;
     }
     
