@@ -8,7 +8,6 @@ class Layer {
     this.name = name;
     this.tiles = new Matrix();
     this.visible = true;
-    this.bgColor = 'white';
   }
 
   empty() {
@@ -31,7 +30,7 @@ class Layer {
     const result = {};
     result.name = this.name;
     result.tiles = [];
-    
+
     this.tiles.forEach((sprite, col, row) => {
       if (!sprite) {
         return;
@@ -46,7 +45,7 @@ class Layer {
         result.tiles.push(spriteResult);
       }
     });
-    
+
     return result;
   }
 }
@@ -57,6 +56,8 @@ export default class Level {
     this.activeLayer = null;
     this.cols = parseInt(document.getElementById('canvas-cols').value);
     this.rows = parseInt(document.getElementById('canvas-rows').value);
+
+    this.bgColor = 'white';
 
     this.addLayerButton = document.getElementById('new-layer');
     this.removeLayerButton = document.getElementById('del-layer');
@@ -139,7 +140,7 @@ export default class Level {
 
     this.colorButton.onclick = event => {
       this.colorButton.jscolor.onFineChange = event => {
-        this.activeLayer.bgColor = this.colorButton.jscolor.toRGBString();
+        this.bgColor = this.colorButton.jscolor.toRGBString();
         this.redraw = true;
       }
     }

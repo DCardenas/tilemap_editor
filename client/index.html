@@ -23,6 +23,12 @@
   <div id='content'>
     <div id='left-content'>
       <div class='button--toolbar-container'>
+        <button class='button--toolbar-switch' id='button--changeMode'>
+          Draw
+        </button>
+        <div class='tooltip'>Click here to switch between draw and trigger modes.</div>
+      </div>
+      <div class='button--toolbar-container'>
         <button class='button--toolbar button--selected' id='button--paint'>
           Paint
         </button>
@@ -43,6 +49,10 @@
       <div class='button--toolbar-container'>
         <button class='button--toolbar button--active' id='button--clear'>Clear</button>
         <div class='tooltip'>Clear the current active layer</div>
+      </div>
+      <div class='button--toolbar-container'>
+        <button class='button--toolbar button--active' id='button--trigger'>Trigger</button>
+        <div class='tooltip'>Add a trigger to a tile</div>
       </div>
     </div>
     <div id='center-content'>

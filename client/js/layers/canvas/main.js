@@ -79,7 +79,7 @@ function createMainGridLayer(canvas, settings) {
 
       bctx.beginPath();
       const cols = Math.floor(buffer.width / tileDims.x);
-      for (let col = 0; col < cols; col++) {
+      for (let col = 0; col <= cols; col++) {
         bctx.moveTo(col * tileDims.x, 0);
         bctx.lineTo(col * tileDims.x, buffer.height);
         bctx.stroke();
@@ -88,7 +88,7 @@ function createMainGridLayer(canvas, settings) {
 
       bctx.beginPath();
       const rows = Math.floor(buffer.height / tileDims.y);
-      for (let row = 0; row < rows; row++) {
+      for (let row = 0; row <= rows; row++) {
         bctx.moveTo(0, row * tileDims.y);
         bctx.lineTo(buffer.width, row * tileDims.y);
         bctx.stroke();
@@ -150,6 +150,9 @@ function createLevelLayer(canvas, settings, tsManager, level) {
       buffer.height = height;
       buffer.width = width;
 
+      bctx.fillStyle = level.bgColor;
+      bctx.fillRect(0, 0, buffer.width, buffer.height);
+
       level.layers.forEach(layer => {
         if (!layer.visible) {
           return;
@@ -163,8 +166,7 @@ function createLevelLayer(canvas, settings, tsManager, level) {
         layer.buffer.width = width;
         layer.buffer.height = height;
 
-        layer.ctx.fillStyle = layer.bgColor;
-        layer.ctx.fillRect(0, 0, layer.buffer.width, layer.buffer.height);
+        layer.ctx.clearRect(0, 0, layer.buffer.width, layer.buffer.height);
 
         layer.tiles.forEach((tile, col, row) => {
           if (tile === null || tile.pos === null) {

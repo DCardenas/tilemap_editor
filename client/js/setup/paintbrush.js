@@ -4,28 +4,32 @@ import Vector2 from '../math/Vector2.js';
 
 export default function setupPaintbrush(mouse, level, canvas, settings, camera, tsManager) {
   const paintbrush = new Paintbrush();
-  
+
   mouse.addCallback('mousedown', event => {
-    if (!tsManager.loading && 
-        event.target.getAttribute('id') === canvas.getAttribute('id')) {
-      
-      mouse.clickPos.set(event.clientX, event.clientY);
-      const mousePos = mouse.getMainCanvasPos(canvas, settings, camera);
-      const col = Math.floor(
-        mousePos.x / settings.dims.tile.x
-      );
-      const row = Math.floor(
-        mousePos.y / settings.dims.tile.y
-      );
-      
-      paintbrush.onmousedown(event.which, mousePos, col, row);
+    if (tsManager.loading ||
+        event.target.getAttribute('id') !== canvas.getAttribute('id') ||
+        !level.activeLayer.visible) {
+      return
     }
+
+    mouse.clickPos.set(event.clientX, event.clientY);
+    const mousePos = mouse.getMainCanvasPos(canvas, settings, camera);
+    const col = Math.floor(
+      mousePos.x / settings.dims.tile.x
+    );
+    const row = Math.floor(
+      mousePos.y / settings.dims.tile.y
+    );
+
+    paintbrush.onmousedown(event.which, mousePos, col, row);
   });
   mouse.addCallback('mousemove', event => {
-    if (tsManager.loading && 
-        event.target.getAttribute('id') !== canvas.getAttribute('id')) {
+    if (tsManager.loading ||
+        event.target.getAttribute('id') !== canvas.getAttribute('id') ||
+        !level.activeLayer.visible) {
       return;
     }
+    
     const mousePos = mouse.getMainCanvasPos(canvas, settings, camera);
     const col = Math.floor(
       mousePos.x / settings.dims.tile.x
@@ -36,21 +40,24 @@ export default function setupPaintbrush(mouse, level, canvas, settings, camera, 
     paintbrush.onmousemove(event.which, mousePos, col, row);
   });
   mouse.addCallback('mouseup', event => {
-    if (!tsManager.loading && 
-      event.target.getAttribute('id') === canvas.getAttribute('id')) {
-      mouse.upPos.set(event.clientX, event.clientY);
-      const mousePos = mouse.getMainCanvasPos(canvas, settings, camera);
-      const col = Math.floor(
-        mousePos.x / settings.dims.tile.x
-      );
-      const row = Math.floor(
-        mousePos.y / settings.dims.tile.y
-      );
-
-      paintbrush.onmouseup(event.which, mousePos, col, row);
+    if (tsManager.loading ||
+        event.target.getAttribute('id') !== canvas.getAttribute('id') ||
+        !level.activeLayer.visible) {
+      return
     }
+
+    mouse.upPos.set(event.clientX, event.clientY);
+    const mousePos = mouse.getMainCanvasPos(canvas, settings, camera);
+    const col = Math.floor(
+      mousePos.x / settings.dims.tile.x
+    );
+    const row = Math.floor(
+      mousePos.y / settings.dims.tile.y
+    );
+
+    paintbrush.onmouseup(event.which, mousePos, col, row);
   })
-  
+
   const paintMode = new PaintbrushMode('paint');
   paintMode.activate = () => {
     return;
@@ -65,11 +72,11 @@ export default function setupPaintbrush(mouse, level, canvas, settings, camera, 
     if (mouse.clickPos.distTo(mouse.upPos) >= mouse.forgiveness) {
       return;
     }
-    
+
     if (!tsManager.hasTile || button !== 1) {
       return;
     }
-    
+
     tsManager.activeTiles.forEach((sprite, offsetCol, offsetRow) => {
       level.setTile(sprite, col + offsetCol, row + offsetRow);
     });
@@ -98,7 +105,7 @@ export default function setupPaintbrush(mouse, level, canvas, settings, camera, 
     if (mouse.clickPos.distTo(mouse.upPos) >= mouse.forgiveness || button !== 1) {
       return;
     }
-    
+
     level.setTile(null, col, row);
     level.redraw = true;
   }
@@ -124,28 +131,28 @@ export default function setupPaintbrush(mouse, level, canvas, settings, camera, 
     const w = Math.abs(sprites.w);
     const h = Math.abs(sprites.h);
     level.setTile(sprites.get(offsetStart.x, offsetStart.y), col, row);
-    
+
     let clickedInSelection = false;
-    
-    if (paintbrush.currentSelection && 
+
+    if (paintbrush.currentSelection &&
         paintbrush.currentSelection.contains(col, row)) {
       clickedInSelection = true;
     }
-    
+
     // Check NSEW
     function checkNeighbors(col, row, offset) {
       const directions = [[-1, 0], [0, -1], [1, 0], [0, 1]];
       directions.forEach(dir => {
         const newCol = col + dir[0];
         const newRow = row + dir[1];
-        
+
         if (!level.has(newCol, newRow)) {
           return
         }
-        
+
         const target = level.getTile(newCol, newRow);
         if (target) {
-          if (target.sameAs(tsManager.activeTiles.get(offset.x, offset.y)) || 
+          if (target.sameAs(tsManager.activeTiles.get(offset.x, offset.y)) ||
               !target.sameAs(fillSprite)) {
             return
           }
@@ -155,28 +162,28 @@ export default function setupPaintbrush(mouse, level, canvas, settings, camera, 
             return
           }
         }
-        
+
         offset.x = offset.x + dir[0];
         offset.y = offset.y + dir[1];
-        
+
         if (offset.x < 0) {
           offset.x += w;
         } else if (offset.x >= w) {
           offset.x -= w;
         }
-        
+
         if (offset.y < 0) {
           offset.y += h;
         } else if (offset.y >= h) {
           offset.y -= h;
         }
-        
+
         level.setTile(sprites.get(offset.x, offset.y), newCol, newRow);
-        
+
         checkNeighbors(newCol, newRow, offset);
       });
     }
-      
+
     checkNeighbors(col, row, offsetStart);
     level.redraw = true;
   }
@@ -184,15 +191,15 @@ export default function setupPaintbrush(mouse, level, canvas, settings, camera, 
     if (mouse.clickPos.distTo(mouse.upPos) >= mouse.forgiveness) {
       return;
     }
-    
+
     if (!tsManager.hasTile || button !== 1) {
       return;
     }
-    
+
     const clickedSprite = level.getTile(col, row);
     floodFill(clickedSprite, col, row);
   }
-  
+
   const selectMode = new PaintbrushMode('select');
   selectMode.selecting = false;
   selectMode.activate = () => {
@@ -210,17 +217,52 @@ export default function setupPaintbrush(mouse, level, canvas, settings, camera, 
   selectMode.onmousemove = (button, pos, col, row) => {
     if (selectMode.selecting && level.has(col, row)) {
       if (col !== paintbrush.currentSelection.endCol) {
-        paintbrush.currentSelection.endCol = col; 
+        paintbrush.currentSelection.endCol = col;
       }
 
       if (row !== paintbrush.currentSelection.endRow) {
-        paintbrush.currentSelection.endRow= row; 
+        paintbrush.currentSelection.endRow= row;
       }
     }
   }
   selectMode.onmouseup = (button, pos, col, row) => {
     if (button === 1) {
       selectMode.selecting = false;
+    }
+  }
+  
+  const triggerMode = new PaintbrushMode('trigger');
+  triggerMode.selecting = false;
+  triggerMode.activate = () => {
+    return;
+  }
+  triggerMode.deactivate = () => {
+    return;
+  }
+  triggerMode.onmousedown = () => {
+    return;
+  }
+  triggerMode.onmouseup = (button, pos, col, row) => {
+    if (mouse.clickPos.distTo(mouse.upPos) >= mouse.forgiveness) {
+      return;
+    }
+
+    if (!tsManager.hasTile || button !== 1) {
+      return;
+    }
+
+    tsManager.activeTiles.forEach((sprite, offsetCol, offsetRow) => {
+      level.setTile(sprite, col + offsetCol, row + offsetRow);
+    });
+    level.redraw = true;
+  }
+  triggerMode.onmousemove = (button, pos, col, row) => {
+    if (tsManager.hasTile && mouse.isDown) {
+      tsManager.activeTiles.forEach((sprite, offsetCol, offsetRow) => {
+          level.setTile(sprite, col + offsetCol, row + offsetRow);
+      });
+
+      level.redraw = true;
     }
   }
 

@@ -11,8 +11,12 @@ import FileIO from './loaders/FileIO.js';
 
 import Vector2 from './math/Vector2.js';
 
+let DRAW_MODE = 'draw';
+let TRIGGER_MODE = 'trigger';
+
 const init = setup();
 const canvas = init.canvas().canvas;
+let canvasMode = DRAW_MODE;
 const ctx = init.canvas().ctx;
 const tilesheetManager = init.tilesheet();
 canvas.onResizeCallbacks.push(function(canvas, event) {
@@ -24,7 +28,6 @@ const camera = {
   main: new Camera(),
   tilesheet: new Camera()
 }
-
 
 const level = new Level();
 document.getElementById('button--clear').onclick = event => {
@@ -45,7 +48,7 @@ const paintbrush = init.paintbrush(mouse, level, canvas.main, settings, camera.m
 
 mouse.addCallback('wheel', event => {
   // Forward -100, Backward 100
-  const scale = event.deltaY * -0.001;
+  const scale = event.deltaY * -0.02;
   const targetID = event.target.getAttribute('id');
   if (targetID === canvas.main.getAttribute('id')) {
     settings.changeZoom(scale);
@@ -87,6 +90,12 @@ function loop() {
       mouse.isIdle = true;
     }
   }
+
+  if (settings.zoom != settings.targetZoom) {
+    settings.updateZoom();
+  }
+
+  camera.main.update();
 
   comp.draw(ctx, camera, settings);
 

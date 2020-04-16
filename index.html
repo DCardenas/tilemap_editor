@@ -5,7 +5,7 @@
 <body>
   <div class='overlay' id='overlay'>
     <div id='overlay-container'>
-      
+
     </div>
   </div>
   <div id='top-bar'>
@@ -66,37 +66,15 @@
             X: <input class='input--dim' value='0' min='0' max='512' type='number' id='tilesheet-marginx'/><br />
             Y: <input class='input--dim' value='0' min='0' max='512' type='number' id='tilesheet-marginy'/>
           </div>
-        </div>        
+        </div>
       </div>
-      
+
       <div id='layer-container'>
         <div id='layers'></div>
       </div>
       <div id='layer-toolbar'>
         <button class='button--active button--layer' id='new-layer'>+</button>
         <button class='button--active button--layer' id='del-layer'>-</button>
-      </div>
-      
-      <div id='settings'>
-        <div class='settings-container' id='tile-settings'>
-          <h3>Tile Size</h3>
-          <div class='options'>
-            W: <input class='input--dim' value='32' min='8' max='512' type='number' id='tile-width'/><br />
-            H: <input class='input--dim' value='32' min='8' max='512' type='number' id='tile-height'/>
-          </div>
-        </div>
-        
-        <div class='settings-container' id='canvas-settings'>
-          <h3>Canvas Size</h3>
-          <div class='options'>
-            Cols: <input class='input--dim' id='canvas-cols' value='40' min='1' max='100' type='number'/><br />
-            Rows: <input class='input--dim' id='canvas-rows' value='30' min='1' max='100' type='number'/>
-          </div>
-        </div>
-        <br />
-        <div class='settings-container' id='grid-settings'>
-          <input type='checkbox' id='canvas-grid'/> Grid
-        </div>
       </div>
     </div>
   </div>

@@ -8,6 +8,7 @@ export default class Settings {
     };
     this.showGrid = true;
     this.zoom = 1;
+    this.targetZoom = 1;
     this.margin = new Vector2();
     this.bgColor = 'rgb(255, 255, 255)';
     this.redraw = {
@@ -114,8 +115,13 @@ export default class Settings {
   }
 
   changeZoom(dz) {
-    this.zoom += dz;
-    this.zoom = Math.min(Math.max(this.zoom, 0.2), 3);
+    this.targetZoom += dz;
+    this.targetZoom = Math.min(Math.max(this.targetZoom, 0.2), 3);
+  }
+
+  updateZoom() {
+    const dz = this.targetZoom - this.zoom;
+    this.zoom += dz * 0.1;
     this.updateTileSize();
   }
 
